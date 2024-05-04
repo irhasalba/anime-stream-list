@@ -1,113 +1,132 @@
+'use client'
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { FaSearch } from "react-icons/fa";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+  NavigationMenuViewport,
+} from "@/components/ui/navigation-menu"
+import Link from "next/link";
 import Image from "next/image";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+
+const contentCategories = [
+  {
+    title: 'Action'
+  },
+  {
+    title: 'Sci-Fi'
+  },
+  {
+    title: 'Slice Of Life'
+  },
+  {
+    title: 'Shounen'
+  }
+]
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main>
+      <nav>
+        <div className="w-full mx-14 pt-3">
+          <div className="flex flex-row gap-32">
+            <h2 className="text-2xl text-black font-bold">Anime<span className="text-orange-400">Stream</span></h2>
+            <NavigationMenu>
+              <NavigationMenuList className="gap-5">
+                <NavigationMenuItem>
+                  <Link href="/" legacyBehavior passHref>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                      Main
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[300px] gap-3 p-4">
+                      {contentCategories.map((d: any) => (
+                        <li>{d.title}</li>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="/" legacyBehavior passHref>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                      Trending
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="/" legacyBehavior passHref>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                      Batch
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+            <div className="flex w-full max-w-sm items-center space-x-3">
+              <Input type="text" placeholder="Search..." className="w-full py-5 leading-tight text-sm" size={30} />
+              <Button className="text-sm bg-orange-600 hover:bg-orange-700"><FaSearch className="mr-1" />Search</Button>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      </nav>
+      <section className="w-full mt-32 mx-14" id="hero-banner">
+        <div className="flex justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-justify"><span className="text-orange-400">Immerse Yourself</span> in Endless Anime Adventures: <br />Your Ultimate Streaming Destination!</h1>
+            <p className="font-light text-base py-2">Get Package Only <span className="text-xl font-bold italic">Rp68.000 / Month</span></p>
+            <Button className="bg-orange-600 hover:bg-orange-700">Subcribe</Button>
+            <Button className="ml-3 border-orange-400" variant='outline'>Free Trial</Button>
+          </div>
+          <div className="">
+            <Image src='/jujutsu_kaisen___render_by_gisxelle_df0cp2d.png' alt="image" width={0}
+              height={0}
+              sizes="100vw"
+              style={{ width: '80%', height: 'auto' }}>
+            </Image>
+          </div>
+        </div>
+      </section>
+      <section className="w-full mx-14 mt-10">
+        <h2 className="font-bold text-xl py-3">Popular</h2>
+        <div className="flex flex-row gap-5">
+          <Card className="w-[200px] relative">
+            <Image src='/jujutsu_kaisen___render_by_gisxelle_df0cp2d.png' alt="image" width={0}
+              height={0}
+              sizes="100%"
+              style={{ width: '100%', height: 'auto' }}>
+            </Image>
+            <p className="absolute">Jujutsu Kaisen</p>
+          </Card>
+          <Card className="w-[200px] relative">
+            <Image src='/jujutsu_kaisen___render_by_gisxelle_df0cp2d.png' alt="image" width={0}
+              height={0}
+              sizes="100%"
+              style={{ width: '100%', height: 'auto' }}>
+            </Image>
+            <p className="absolute">Jujutsu Kaisen</p>
+          </Card>
+          <Card className="w-[200px] relative">
+            <Image src='/jujutsu_kaisen___render_by_gisxelle_df0cp2d.png' alt="image" width={0}
+              height={0}
+              sizes="100%"
+              style={{ width: '100%', height: 'auto' }}>
+            </Image>
+            <p className="absolute">Jujutsu Kaisen</p>
+          </Card>
+        </div>
+      </section>
     </main>
   );
 }
